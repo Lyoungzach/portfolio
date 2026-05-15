@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zach — IT Technician</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f4f1ec;
+      --bg2:       #edeae3;
+      --ink:       #1a1a1a;
+      --ink2:      #4a4a4a;
+      --ink3:      #888;
+      --accent:    #2d6a9f;
+      --accent2:   #c8e0f4;
+      --tag-bg:    #e2edf6;
+      --tag-fg:    #1d4e78;
+      --card-bg:   #ffffff;
+      --card-bdr:  #ddd8cf;
+      --radius:    10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 400;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2.5rem;
+      background: rgba(244, 241, 236, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--card-bdr);
+    }
+
+    nav .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink2);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    section + section {
+      border-top: 1px solid var(--card-bdr);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 10rem 0 6rem;
+    }
+
+    .eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--ink2);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radius);
+      font-family: 'Epilogue', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: #1f5080;
+      border-color: #1f5080;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink2);
+      border: 1px solid var(--card-bdr);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg2);
+      color: var(--ink);
+    }
+
+    /* ── SECTION TITLES ── */
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-sub {
+      font-size: 0.925rem;
+      color: var(--ink3);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--ink2);
+      max-width: 680px;
+    }
+
+    .about-text + .about-text {
+      margin-top: 1rem;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-bdr);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.4rem;
+    }
+
+    .skill-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    /* ── HOMELAB ── */
+    .homelab-intro {
+      font-size: 1.05rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    .homelab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .homelab-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-bdr);
+      border-radius: var(--radius);
+      padding: 1.3rem 1.5rem;
+    }
+
+    .homelab-card .card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .homelab-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .homelab-card p {
+      font-size: 0.875rem;
+      color: var(--ink2);
+      line-height: 1.65;
+    }
+
+    /* ── PROJECTS ── */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-bdr);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .project-card .proj-left { flex: 1; }
+
+    .project-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .project-card p {
+      font-size: 0.875rem;
+      color: var(--ink2);
+      line-height: 1.6;
+      margin-bottom: 0.7rem;
+    }
+
+    .proj-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .proj-link:hover { text-decoration: underline; }
+
+    .proj-badge {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-school {
+      background: #e8f4e8;
+      color: #2a6b2a;
+    }
+
+    .badge-personal {
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+    }
+
+    /* ── CONTACT ── */
+    .contact-block {
+      max-width: 520px;
+    }
+
+    .contact-block p {
+      font-size: 1.05rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--card-bdr);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.825rem;
+      color: var(--ink3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="logo">Zach</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#homelab">Homelab</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <p class="eyebrow">IT Technician · Québec, Canada</p>
+      <h1>Building reliable<br>infrastructure,<br>one stack at a time.</h1>
+      <p class="hero-sub">
+        IT technician in training with hands-on experience running production-grade homelab infrastructure — Proxmox clusters, VLANs, Ansible automation, and self-hosted services.
+      </p>
+      <div class="hero-links">
+        <a href="https://github.com/Lyoungzach" class="btn btn-primary" target="_blank">
+          ↗ GitHub
+        </a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2>About</h2>
+      <p class="section-sub">Who I am and where I'm headed</p>
+      <p class="about-text">
+        I'm a network management and system security student in Québec with a genuine passion for infrastructure. Long before starting my program, I was building and maintaining my own homelab — running Proxmox, configuring VLANs, writing Ansible playbooks, and self-hosting everything from media servers to password managers.
+      </p>
+      <p class="about-text" style="margin-top:1rem;">
+        I'm currently working toward a career as a systems administrator, starting in an IT technician role. I like understanding how systems work at a deep level — not just getting things running, but understanding why they work and what happens when they don't.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <p class="section-sub">Technologies and tools I work with</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Operating Systems</h3>
+          <div class="tags">
+            <span class="tag">Linux</span>
+            <span class="tag">Windows Server</span>
+            <span class="tag">Proxmox VE</span>
+            <span class="tag">TrueNAS SCALE</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Networking</h3>
+          <div class="tags">
+            <span class="tag">VLANs</span>
+            <span class="tag">UniFi</span>
+            <span class="tag">DNS</span>
+            <span class="tag">Firewall rules</span>
+            <span class="tag">TCP/IP</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Automation & IaC</h3>
+          <div class="tags">
+            <span class="tag">Ansible</span>
+            <span class="tag">Bash</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Docker Compose</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Services & Storage</h3>
+          <div class="tags">
+            <span class="tag">ZFS</span>
+            <span class="tag">NUT/UPS</span>
+            <span class="tag">MSSQL</span>
+            <span class="tag">Portainer</span>
+            <span class="tag">Nginx</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Monitoring & Docs</h3>
+          <div class="tags">
+            <span class="tag">Uptime Kuma</span>
+            <span class="tag">BookStack</span>
+            <span class="tag">Discord webhooks</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Currently Learning</h3>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Microsoft Networks</span>
+            <span class="tag">PKI / Certs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOMELAB -->
+  <section id="homelab">
+    <div class="container">
+      <h2>Homelab</h2>
+      <p class="section-sub">Production-grade infrastructure at home</p>
+      <p class="homelab-intro">
+        My homelab isn't a school project — it's a real multi-node environment I've been building and maintaining for years. It runs 24/7 and serves as my primary testbed for learning systems administration in practice.
+      </p>
+      <div class="homelab-grid">
+        <div class="homelab-card">
+          <div class="card-icon">🖥️</div>
+          <h3>Compute</h3>
+          <p>Two Proxmox nodes (Ryzen 7 6800H) plus a rackmount server (Ryzen 9 3900X). VMs and LXCs across all nodes, managed via Proxmox VE.</p>
+        </div>
+        <div class="homelab-card">
+          <div class="card-icon">🌐</div>
+          <h3>Network</h3>
+          <p>UniFi stack with 9 VLANs — Management, Storage, Services, Trusted, IoT, Guest, and more. IDS/IPS via UCG Fiber, Technitium DNS.</p>
+        </div>
+        <div class="homelab-card">
+          <div class="card-icon">🗄️</div>
+          <h3>Storage</h3>
+          <p>Primary NAS on TrueNAS SCALE with RAIDZ2 (5×10TB). Backup NAS with daily ZFS replication and 30-day retention.</p>
+        </div>
+        <div class="homelab-card">
+          <div class="card-icon">⚡</div>
+          <h3>Power & Reliability</h3>
+          <p>APC UPS with NUT running a progressive shutdown strategy — TrueNAS at 5 min, compute nodes at 10–15 min, coordinated via Ansible.</p>
+        </div>
+        <div class="homelab-card">
+          <div class="card-icon">🔧</div>
+          <h3>Automation</h3>
+          <p>Ansible manages all 20 hosts with SSH key auth, SSH hardening, and NUT config across the fleet. All changes tracked in Git.</p>
+        </div>
+        <div class="homelab-card">
+          <div class="card-icon">📊</div>
+          <h3>Self-Hosted Services</h3>
+          <p>Nextcloud, Vaultwarden, Jellyfin, Immich, full *arr stack, Uptime Kuma with Discord alerts, BookStack documentation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <h2>Projects</h2>
+      <p class="section-sub">Selected work from school and personal infrastructure</p>
+      <div class="project-list">
+
+        <div class="project-card">
+          <div class="proj-left">
+            <h3>Ansible Fleet Automation</h3>
+            <p>Rebuilt Ansible from a broken state into a unified system managing 20 hosts. Implemented SSH key auth across the fleet, SSH hardening playbook, and NUT UPS configuration with progressive shutdown.</p>
+            <div class="tags" style="margin-top:0.5rem;">
+              <span class="tag">Ansible</span>
+              <span class="tag">SSH</span>
+              <span class="tag">NUT</span>
+              <span class="tag">Linux</span>
+            </div>
+          </div>
+          <span class="proj-badge badge-personal">Personal</span>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-left">
+            <h3>Multi-VLAN Network Design</h3>
+            <p>Designed and implemented a segmented home network with 9 VLANs, inter-VLAN firewall rules, a dedicated DNS server, and IDS/IPS. Migrated TrueNAS to a dedicated Storage VLAN.</p>
+            <div class="tags" style="margin-top:0.5rem;">
+              <span class="tag">UniFi</span>
+              <span class="tag">VLANs</span>
+              <span class="tag">Firewall</span>
+              <span class="tag">DNS</span>
+            </div>
+          </div>
+          <span class="proj-badge badge-personal">Personal</span>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-left">
+            <h3>Docker Multi-Container Deployment</h3>
+            <p>School project deploying multiple containers with a custom Dockerfile and docker-compose file. Services include web servers on custom ports with network isolation.</p>
+            <div class="tags" style="margin-top:0.5rem;">
+              <span class="tag">Docker</span>
+              <span class="tag">Docker Compose</span>
+              <span class="tag">Nginx</span>
+              <span class="tag">Alpine Linux</span>
+            </div>
+          </div>
+          <span class="proj-badge badge-school">School</span>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-left">
+            <h3>ZFS Replication & Backup Strategy</h3>
+            <p>Set up a secondary TrueNAS NAS as a replication target with daily ZFS snapshots and 30-day retention, creating a reliable offsite-style backup for homelab data.</p>
+            <div class="tags" style="margin-top:0.5rem;">
+              <span class="tag">TrueNAS</span>
+              <span class="tag">ZFS</span>
+              <span class="tag">RAIDZ</span>
+              <span class="tag">Backup</span>
+            </div>
+          </div>
+          <span class="proj-badge badge-personal">Personal</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="section-sub">Let's connect</p>
+      <div class="contact-block">
+        <p>
+          I'm currently studying in Québec and open to IT technician opportunities — particularly in infrastructure, systems, or network-adjacent roles. Feel free to reach out via GitHub or email.
+        </p>
+        <div class="hero-links">
+          <a href="https://github.com/Lyoungzach" class="btn btn-primary" target="_blank">↗ GitHub</a>
+          <!-- Replace with your actual email below -->
+          <a href="mailto:your@email.com" class="btn btn-ghost">Email me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Built by Zach · Hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+</body>
+</html>
